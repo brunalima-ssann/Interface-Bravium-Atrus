@@ -1,0 +1,39 @@
+import { FiCheck } from 'react-icons/fi';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Styles from '../css/posConfirmacao.module.css'
+import Relogio from './relogio'
+import Faixa from './faixa'
+
+
+function Pos_Confirmacao(){
+
+    const navigate = useNavigate()
+    
+   useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/entregas') 
+   },5000) 
+    return () => clearTimeout(timer)
+  }, [navigate])
+
+    return(
+        <>
+        <Faixa/>
+        <Relogio/>
+        <section className={Styles.pos_confirmacao}>
+            <div className={Styles.mensagem}>
+                <div className={Styles.check}>
+                    <FiCheck className={Styles.iconCheck}/>
+                </div>
+                <div className={Styles.texto}>
+                    <h1>Entrega confirmada com sucesso!</h1>
+                    <h3>Você já será direcionado para a tela inicial</h3>
+                </div>
+            </div>
+        </section>
+        </>
+    )
+}
+
+export default Pos_Confirmacao

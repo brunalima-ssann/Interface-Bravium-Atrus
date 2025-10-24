@@ -1,8 +1,9 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import CardDetalhe from './cardDetalhes'; // <--- letra maiúscula, bate com JSX
-import Faixa from './faixa';
-import Relogio from './relogio';
-import Styles from '../css/detalhes.module.css';
+import { useParams, useNavigate } from 'react-router-dom'
+import CardDetalhe from './cardDetalhes'
+import Faixa from './faixa'
+import Relogio from './relogio'
+import Styles from '../css/detalhes.module.css'
+import { Link } from 'react-router-dom'
 
 
 const pedidos = [
@@ -39,31 +40,31 @@ const pedidos = [
 ];
 
 function Detalhes() {
-  const { id } = useParams();
-  const pedido = pedidos.find(p => p.id === Number(id)); 
+  const { id } = useParams()
+  const pedido = pedidos.find(p => p.id === Number(id));
 
-  if (!pedido) return <p>Nenhum pedido encontrado</p>;
+  if (!pedido) return <p>Nenhum pedido encontrado</p>
 
-  const { id1 } = useParams();
-  const navigate = useNavigate();
-  const pedido1 = pedidos.find(p => p.id === Number(id));
+  const { id1 } = useParams()
+  const navigate = useNavigate()
+  const pedido1 = pedidos.find(p => p.id === Number(id))
 
-  if (!pedido) return <p>Nenhum pedido encontrado</p>;
+  if (!pedido) return <p>Nenhum pedido encontrado</p>
 
   const handleClienteNaoEncontrado = () => {
     // Pega todos os pedidos do localStorage ou array original
-    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidos;
+    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidos
 
     // Atualiza o status do pedido
     const pedidosAtualizados = pedidosSalvos.map(p =>
       p.id === pedido.id ? { ...p, status: 'Cliente não encontrado' } : p
-    );
+    )
 
     // Salva de volta
-    localStorage.setItem('pedidos', JSON.stringify(pedidosAtualizados));
+    localStorage.setItem('pedidos', JSON.stringify(pedidosAtualizados))
 
     // Volta para a tela de entregas
-    navigate('/entregas');
+    navigate('/entregas')
   };
   
 
@@ -79,7 +80,7 @@ function Detalhes() {
           </div>
 
           <div className={Styles.botoes}>
-            <button className={Styles.btnEntregue}>Marcar como entregue</button>
+            <Link to="/confirmacao" className={Styles.btnEntregue}>Marcar como entregue</Link>
             <button className={Styles.btnNaoEncontrado} onClick={handleClienteNaoEncontrado}>Cliente não encontrado</button>
         </div>
           

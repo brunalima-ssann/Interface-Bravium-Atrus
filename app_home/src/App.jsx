@@ -4,6 +4,7 @@ import Login from './componentes/login'
 import Entregas from './componentes/entregas'
 import Detalhes from './componentes/detalhes'
 import Confirmacao from './componentes/confirmacao';
+import Pos_Confirmacao from './componentes/posConfirmacao';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/entregas" element={<Entregas />} />
         <Route path="/detalhes/:id" element={<Detalhes/>} />
         <Route path ="/confirmacao" element={<Confirmacao/>}/>
+        <Route path="/posConfirmacao" element={<Pos_Confirmacao/>}/>
       </Routes>
     </Router>
     </main>

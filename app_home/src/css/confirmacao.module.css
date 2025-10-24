@@ -1,0 +1,136 @@
+.confirmacao {
+  width: 100%;
+  height: auto;
+  font-family: "Poppins";
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.texto1 {
+  width: 90%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 35px;
+  color: #052A75;
+  font-size: 15px;
+}
+
+.area_usuario {
+  width: 90%;
+  color: #3B3B3B;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.area_usuario h1 {
+  font-weight: 600;
+}
+
+.area_envio {
+  width: 90%;
+  background-color: #EEEEEE;
+  height: 200px;
+  border-radius: 10px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.uploadCard {
+  border-radius: 12px;
+  padding: 35px 20px;
+  text-align: center;
+}
+
+.uploadCard h2 {
+  color: #3B3B3B;
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.uploadLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #052A75;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.iconClip {
+  font-size: 1rem;
+}
+
+.inputFile {
+  display: none;
+}
+
+.listaArquivos {
+  width: 90%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arquivoItem {
+  background-color: #EEEEEE;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconeArquivo {
+  color: #052A75;
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.arquivoItem span {
+  flex: 1;
+  color: #333;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Botão de remover */
+.botaoRemover {
+  background: transparent;
+  border: none;
+  color: #e60800;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.botaoConfirmar {
+  width: 90%;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  background-color: #052A75;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins";
+}

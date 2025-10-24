@@ -1,0 +1,41 @@
+.pos_confirmacao {
+    width: 100%;
+    height: 500px;
+    font-family: "Poppins";
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mensagem {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: auto;
+}
+.check{
+    background-color: #052A75;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.iconCheck{
+    color: white;
+    font-size: 55px;
+}
+.texto h1{
+    color: #052A75;
+    font-size: 35px;
+}
+.texto h3{
+    color: #3B3B3B;
+    font-size: 25px;
+}
