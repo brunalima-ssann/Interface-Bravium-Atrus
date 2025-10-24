@@ -1,0 +1,164 @@
+.entregas{
+    width: 100%;
+    height: auto;
+    font-family: "Poppins";
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*primeira parte - usuário*/
+.area_usuario{
+    width: 90%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+.area_usuario h1{
+    color: #052A75;
+    font-weight: 700;
+    font-size: 30px;
+    /*margin-left: 50px;*/
+}
+.usuario{
+    width: 50px;
+    /*margin-right: 50px;*/
+}
+.usuario img{
+    width: 100%;
+    
+}
+/*segunda parte - filtro*/
+.area_filtro{
+    width: 90%;
+    height: 200px;
+    margin-top: 50px;
+}
+.area_filtro h3{
+    font-size: 25px;
+    color: #052A75;
+}
+.filtroContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.campo label {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #3B3B3B;
+}
+
+.campo input,
+.campo select {
+    height: 35px;
+    border-radius: 8px;
+    background-color: #EEEEEE;
+    border: 1px solid #EEEEEE;
+    padding: 0 18px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.botoes{
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.botaoFiltrar {
+    background-color: #052A75;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.botaoFiltrar:hover {
+    background-color: #00247a;
+}
+
+.botaoLimpar {
+    background-color: #3B3B3B;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.listaPedidos{
+    margin-top: 50px;
+    width: 90%;
+    height: 1000px;
+}
+
+@media (max-width: 768px){
+
+    .area_usuario{
+        align-items: center;
+        width: 93%;
+    }
+    .area_usuario p{
+        font-size: 25px;
+    }
+    .usuario{
+        margin-right: 1px;
+        width: 30px;
+        height: 30px;
+    }
+    .usuario img{
+        width: 100%;
+        align-items: center;
+    }
+
+    .area_filtro{
+        width: 93%;
+    }
+    .area_filtro h3{
+    font-size: 17px;
+    color: #052A75;
+    }
+
+    .filtroContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 10px; 
+    }
+
+    .botoes {
+        margin-top: 20px;
+    }
+}

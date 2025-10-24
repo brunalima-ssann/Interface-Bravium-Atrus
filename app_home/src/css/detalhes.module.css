@@ -1,0 +1,59 @@
+.detalhes{
+    width: 100%;
+    height: auto;
+    font-family: "Poppins";
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.texto1{
+    width: 90%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 35px;
+    color: #052A75;
+    font-size: 15px;
+}
+.card{
+    width: 100%;
+    height: auto;
+    margin-top: 35px;
+}
+
+.botoes{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 35px;
+  margin-top: 35px;
+}
+
+.btnEntregue{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #052A75;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.btnNaoEncontrado{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #EEEEEE;
+    color: #052A75;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 45px;
+}
