@@ -10,15 +10,26 @@ function App() {
 
   return (
     <main>
+      {/* Configuração do Router para navegar entre telas */}
       <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />  
-        <Route path="/entregas" element={<Entregas />} />
-        <Route path="/detalhes/:id" element={<Detalhes/>} />
-        <Route path ="/confirmacao" element={<Confirmacao/>}/>
-        <Route path="/posConfirmacao" element={<Pos_Confirmacao/>}/>
-      </Routes>
-    </Router>
+        <Routes>
+          {/* Rota principal da aplicação - tela de login */}
+          <Route path="/" element={<Login />} />  
+
+          {/* Tela que exibe todos os pedidos do entregador */}
+          <Route path="/entregas" element={<Entregas />} />
+
+          {/* Tela de detalhes de um pedido específico */}
+          {/* Esse 'id' tem ligação direta com os arrays usados dentro do componente 'detalhes'*/}
+          <Route path="/detalhes/:id" element={<Detalhes/>} />
+
+          {/* Tela para confirmar a entrega e anexar documentos */}
+          <Route path="/confirmacao" element={<Confirmacao/>}/>
+
+          {/* Tela pós-confirmação exibida após a entrega ser confirmada */}
+          <Route path="/posConfirmacao" element={<Pos_Confirmacao/>}/>
+        </Routes>
+      </Router>
     </main>
   )
 }
