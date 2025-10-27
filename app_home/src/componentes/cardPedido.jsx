@@ -1,27 +1,37 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Styles from '../css/cardPedido.module.css'
-import { FaPhone, FaMapMarkerAlt, FaRegListAlt } from 'react-icons/fa'
+import { FaPhone, FaMapMarkerAlt} from 'react-icons/fa'
 
 function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
-  if (!pedido) return null;
+  if (!pedido) return null; // Se não houver pedido, não renderiza nada
 
-  const [aberto, setAberto] = useState(false);
-  const navigate = useNavigate();
+  const [aberto, setAberto] = useState(false); // Estado que controla se o card está aberto ou no resumo
+  const navigate = useNavigate(); // Para navegar para detalhes do pedido
 
+  /**
+   * Função chamada ao clicar em "Marcar como entregue"
+   * Chama a função passada pelo componente pai e navega para a página de detalhes
+   */
   const handleMarcarEntregue = () => {
     onMarcarEntregue(pedido.id);
     navigate(`/detalhes/${pedido.id}`);
   };
 
+  /**
+   * Função chamada quando o pedido é marcado como "Cliente não encontrado"
+   * Atualiza apenas o status do pedido específico
+   * Fecha o card após atualizar >> Ainda não esta funcional 
+   */
   const handleClienteNaoEncontrado = () => {
-    // Atualiza apenas o status desse pedido
     atualizarStatus(pedido.id, 'Cliente não encontrado');
-    setAberto(false); // opcional: fecha o card depois de atualizar
+    setAberto(false);
   };
 
   return (
     <div className={Styles.card}>
+
+      {/* Exibição resumida do pedido */}
       {!aberto ? (
         <div className={Styles.cardResumo}>
           <p>Cliente</p>
@@ -30,12 +40,14 @@ function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
             {pedido.endereco}
           </div>
 
-          
           <button onClick={() => setAberto(true)} className={Styles.botaoDetalhes}>
             Ver detalhes
           </button>
         </div>
+
       ) : (
+
+        /* Exibição detalhada do pedido */
         <div className={Styles.cardDetalhes}>
           <h1>Cliente</h1>
           <h2>Dados:</h2>
@@ -48,9 +60,7 @@ function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
             <FaMapMarkerAlt className={Styles.icone} />
             {pedido.endereco}<br />
             <div className={Styles.conteudo1}>{pedido.enderecoCompleto}</div>
-
           </div>
-
 
           <div className={Styles.botoesDetalhes2}>
             <button onClick={handleMarcarEntregue} className={Styles.botaoEntregue}>

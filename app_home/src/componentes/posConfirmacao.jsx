@@ -1,3 +1,4 @@
+// Componente para depois da tela de confirmação
 import { FiCheck } from 'react-icons/fi';
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -8,19 +9,19 @@ import Faixa from './faixa'
 
 function Pos_Confirmacao(){
 
-    const navigate = useNavigate()
+    const navigate = useNavigate()//definindo navegação
     
    useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/entregas') 
-   },5000) 
+   },5000)// tempo de permanência na tela (5 segundos)
     return () => clearTimeout(timer)
   }, [navigate])
 
     return(
         <>
-        <Faixa/>
-        <Relogio/>
+        <Faixa/> {/* Decoração */}
+        <Relogio/>{/* Decoração */}
         <section className={Styles.pos_confirmacao}>
             <div className={Styles.mensagem}>
                 <div className={Styles.check}>

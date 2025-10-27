@@ -1,3 +1,4 @@
+// Componente dedicado apenas a decoração 
 import { useState, useEffect } from 'react'
 import Styles from '../css/relogio.module.css'
 

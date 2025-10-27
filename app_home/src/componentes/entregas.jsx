@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import Styles from '../css/entregas.module.css'
 import icon_user from '../imagem/icon_user.png'
-import CardPedido from './cardPedido'
+import CardPedido from './cardPedido' // componente do card
 import Faixa from './faixa'
 import Relogio from './relogio'
 
+// especie de "banco de dados" local, substituir por requisição
+// é um array de objetos que contém os pedidos iniciais da aplicação.
+// cada objeto representa um pedido individual e possui propriedades individuais - nome, endereço, id...
 const pedidosOriginais = [
   {
     id: 1,
@@ -40,41 +43,52 @@ const pedidosOriginais = [
 
 function Entregas() {
 
-  const [nome, setNome] = useState('')
-  const [pedidos, setPedidos] = useState([])
+  const [nome, setNome] = useState('') // Armazena o nome do usuário logado
+  const [pedidos, setPedidos] = useState([]) // Armazena a lista de pedidos
 
-  // Nome usuário >> associado ao login
+  // Carrega o nome do usuário do localStorage
   useEffect(() => {
     const nomeSalvo = localStorage.getItem('nomeUsuario')
     if (nomeSalvo) setNome(nomeSalvo)
   }, [])
 
-  // Carregar pedidos do localStorage ou array original
+  // Carrega pedidos do localStorage ou usa o array original caso não haja dados salvos
   useEffect(() => {
-    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidosOriginais;
-    setPedidos(pedidosSalvos);
+    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidosOriginais
+    setPedidos(pedidosSalvos)
   }, [])
 
-  // Função para atualizar status de um pedido específico
+  /**
+   * Atualiza o status de um pedido específico
+   * @param {number} id - ID do pedido a ser atualizado
+   * @param {string} novoStatus - Novo status do pedido
+   */
   const atualizarStatus = (id, novoStatus) => {
     const atualizados = pedidos.map(p =>
       p.id === id ? { ...p, status: novoStatus } : p
     )
-    setPedidos(atualizados)
-    localStorage.setItem('pedidos', JSON.stringify(atualizados))
+    setPedidos(atualizados) // Atualiza o estado local
+    localStorage.setItem('pedidos', JSON.stringify(atualizados)) // Salva alterações no localStorage
   }
 
-  // Estados do filtro
+  // Estados de filtros
   const [statusFiltro, setStatusFiltro] = useState('todas')
   const [data, setData] = useState('')
   const [cliente, setCliente] = useState('')
   const [notaFiscal, setNotaFiscal] = useState('')
 
+  /**
+   * Aplica os filtros aos pedidos
+   * Atualmente apenas loga os filtros aplicados no console
+   */
   const filtrarFiltro = () => {
     const filtros = { status: statusFiltro, data, cliente, notaFiscal }
     console.log('Filtros aplicados:', filtros)
   }
 
+  /**
+   * Limpa todos os filtros e reseta os estados para padrão
+   */
   const limparFiltro = () => {
     setStatusFiltro('todas')
     setData('')
@@ -84,8 +98,8 @@ function Entregas() {
 
   return (
     <>
-      <Faixa />
-      <Relogio />
+      <Faixa /> {/*Decoração*/}
+      <Relogio />{/*Decoração*/}
       <section className={Styles.entregas}>
 
         <div className={Styles.area_usuario}>
@@ -95,6 +109,7 @@ function Entregas() {
           </a>
         </div>
 
+        {/*Área do filtro*/}
         <div className={Styles.area_filtro}>
           <h3>Minhas entregas</h3>
 
@@ -135,6 +150,7 @@ function Entregas() {
           </div>
         </div>
 
+      {/*Componente card de pedidos - garante exibição apenas de pedidos reais, pedidos esses que vem de uma base de dados local*/} 
         <div className={Styles.listaPedidos}>
           {pedidos.length > 0 ? (
             pedidos.map((pedido) => (
@@ -142,7 +158,7 @@ function Entregas() {
                 key={pedido.id}
                 pedido={pedido}
                 onMarcarEntregue={(id) => console.log('Marcar como entregue:', id)}
-                atualizarStatus={atualizarStatus} // passa função para atualizar o card
+                atualizarStatus={atualizarStatus}
               />
             ))
           ) : (

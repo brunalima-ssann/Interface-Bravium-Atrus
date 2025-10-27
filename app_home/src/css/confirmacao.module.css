@@ -44,9 +44,8 @@
 }
 
 .uploadCard {
-  border-radius: 12px;
-  padding: 35px 20px;
   text-align: center;
+  
 }
 
 .uploadCard h2 {
@@ -62,23 +61,20 @@
   justify-content: center;
   gap: 8px;
   background-color: #052A75;
+  font-size: 15px;
   color: white;
   padding: 10px 22px;
   border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
-  transition: 0.3s;
+  
 }
-
-
 .iconClip {
   font-size: 1rem;
 }
-
 .inputFile {
   display: none;
 }
-
 .listaArquivos {
   width: 90%;
   margin-top: 20px;
@@ -86,7 +82,6 @@
   flex-direction: column;
   gap: 8px;
 }
-
 .arquivoItem {
   background-color: #EEEEEE;
   border-radius: 10px;
@@ -95,11 +90,27 @@
   align-items: center;
   justify-content: space-between;
 }
-
 .iconeArquivo {
   color: #052A75;
   font-size: 1.2rem;
   margin-right: 8px;
+}
+
+.botaoCamera{
+  background-color: #052A75;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 15px;
+  border: none;
+  font-family: 'Poppins';
+
+}
+.iconCamera {
+  font-size: 1rem;
 }
 
 .arquivoItem span {
@@ -111,7 +122,6 @@
   white-space: nowrap;
 }
 
-/* Botão de remover */
 .botaoRemover {
   background: transparent;
   border: none;

@@ -1,0 +1,65 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-family: "Poppins";
+}
+
+.modal {
+  background: #EEEEEE;
+  border-radius: 10px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.video {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+.preview {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.botaoCapturar,
+.botaoConfirmar,
+.botaoRefazer,
+.botaoFechar {
+  background-color: #052A75;
+  border: none;
+  color: white;
+  padding: 8px 45px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins";
+}
+
+.botaoFechar {
+  background-color: #e60f00;
+}
+
+.botaoRefazer {
+  background-color: #ff9900;
+}
+
+.botoes {
+  display: flex;
+  gap: 25px;
+}
