@@ -1,61 +1,112 @@
-import { useState } from 'react' // Hook useState para gerenciar estados locais
+import { useState } from 'react'
+import { FaSignInAlt, FaChevronDown } from 'react-icons/fa'
 import Styles from '../css/login.module.css'
 import logo from '../imagem/logo_login.png'
 import Faixa from './faixa'
-import icon_entrar from '../imagem/icon_entrar.png'
 
 function Login() {
-    // Estados do componente
-    const [login, setLogin] = useState('') // Estado para armazenar o login digitado
-    const [senha, setSenha] = useState('') // Estado para armazenar a senha digitada
-    const [erro, setErro] = useState('') // Estado para armazenar mensagens de erro no login
+    const [placa, setPlaca] = useState('')
+    const [modelo, setModelo] = useState('')
+    const [erro, setErro] = useState('')
+    const [carroValido, setCarroValido] = useState(false)
+    const [motoristaSelecionado, setMotoristaSelecionado] = useState(null)
+    const [dropdownAberto, setDropdownAberto] = useState(false)
 
-    // Função para tratar o submit do formulário
+    const motoristas = [
+        { id: 1, nome: 'Bruna Santos Lima' },
+        { id: 2, nome: 'João Vitor Amaral' },
+        { id: 3, nome: 'Isabella Preto' },
+        { id: 4, nome: 'Victor Ramon'}
+    ]
+
+    // Validação fixa do carro
     const handleSubmit = (e) => {
-        e.preventDefault() // Evita o reload da página ao enviar o formulário
-
-        // Validação simples de login e senha
-        if (login === 'blima' && senha === '12345') {
-            localStorage.setItem('nomeUsuario', 'Bruna Santos');
-            window.location.href = '/entregas';
-        } else if (login === 'jvamaral' && senha === '54321') {
-            localStorage.setItem('nomeUsuario', 'João Amaral');
-            window.location.href = '/entregas';
+        e.preventDefault()
+        if (placa.toUpperCase() === 'ABC1234' && modelo.toUpperCase() === 'FIAT FIORINO') {
+            setCarroValido(true)
+            setErro('')
         } else {
-            setErro('Usuário ou senha incorretos.');
+            setErro('Carro não encontrado.')
         }
+    }
+
+    const handleConfirmarMotorista = () => {
+        if (!motoristaSelecionado) {
+            setErro('Selecione um motorista antes de continuar.')
+            return
+        }
+
+        localStorage.setItem('nomeUsuario', motoristaSelecionado.nome)
+        localStorage.setItem('placaCarro', placa)
+        localStorage.setItem('modeloCarro', modelo)
+        window.location.href = '/entregas'
     }
 
     return (
         <>
-            <Faixa/>
+            <Faixa />
 
             <section className={Styles.login}>
                 <div className={Styles.container}>
                     <div className={Styles.logo}>
-                        <img src={logo} alt="logo área de login"/>
+                        <img src={logo} alt="logo área de login" />
                     </div>
 
                     <div className={Styles.informacoes}>
                         <h1>Bem-vindo(a)</h1>
+                        <h3>Entre com as informações do carro!</h3>
 
                         <div className={Styles.area_infos}>
                             <form className={Styles.form} onSubmit={handleSubmit}>
-                                <label>Login:</label>
-                                <input type="text" value={login} onChange={(e) => setLogin(e.target.value)} placeholder="Digite seu login"/>
+                                <label>Placa:</label>
+                                <input type="text" value={placa} onChange={(e) => setPlaca(e.target.value)} placeholder="Digite a placa do carro" />
 
-                                <label>Senha:</label>
-                                <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="Digite sua senha"/>
+                                <label>Modelo:</label>
+                                <input type="text" value={modelo} onChange={(e) => setModelo(e.target.value)} placeholder="Digite o modelo do carro" />
+
+                                {/* Campo Motorista aparece somente se o carro for validado */}
+                                {carroValido && (
+                                    <>
+                                        <label>Motorista:</label>
+                                        <div className={Styles.dropdown} onClick={() => setDropdownAberto(!dropdownAberto)}>
+                                            {motoristaSelecionado? motoristaSelecionado.nome: 'Selecione o motorista'}
+                                            <FaChevronDown className={Styles.dropdownLabel} />
+
+                                            {dropdownAberto && (
+                                                <ul className={Styles.dropdownList}> {motoristas.map((m) => (
+                                                        <li key={m.id}>
+                                                            <div
+                                                                className={`${Styles.dropdownItem} ${motoristaSelecionado?.id === m.id ? Styles.dropdownItemSelecionado : ''}`}
+                                                                onClick={() => {setMotoristaSelecionado(m) 
+                                                                    setDropdownAberto(false)
+                                                                }}>
+                                                                {m.nome}
+                                                            </div>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </>
+                                )}
 
                                 {erro && <p className={Styles.erro}>{erro}</p>}
 
-                                <a href="#" className={Styles.link_esqueci}>
-                                    Esqueceu a senha?
-                                </a>
-                                <button type="submit" className={Styles.botao_entrar}>
-                                    Entrar
-                                    <img src={icon_entrar} alt="icone entrar"/>
-                                </button>
+                                {/* Botão Confirmar só aparece depois do campo motorista */}
+                                {carroValido && (
+                                    <button type="button" onClick={handleConfirmarMotorista} className={Styles.botao_entrar}>
+                                        Confirmar
+                                        <FaSignInAlt className={Styles.icon_entrar} />
+                                    </button>
+                                )}
+
+                                {/* Botão Entrar só aparece antes da validação do carro */}
+                                {!carroValido && (
+                                    <button type="submit" className={Styles.botao_entrar}>
+                                        Entrar
+                                        <FaSignInAlt className={Styles.icon_entrar} />
+                                    </button>
+                                )}
                             </form>
                         </div>
                     </div>
@@ -65,5 +116,4 @@ function Login() {
     )
 }
 
-// Exporta o componente para ser usado em outras partes do projeto
 export default Login

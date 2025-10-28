@@ -4,6 +4,7 @@ import icon_user from '../imagem/icon_user.png'
 import CardPedido from './cardPedido' // componente do card
 import Faixa from './faixa'
 import Relogio from './relogio'
+import { Link } from 'react-router-dom'
 
 // especie de "banco de dados" local, substituir por requisição
 // é um array de objetos que contém os pedidos iniciais da aplicação.
@@ -104,9 +105,9 @@ function Entregas() {
 
         <div className={Styles.area_usuario}>
           <h1>Olá {nome ? nome : '[Nome]'}!</h1>
-          <a href="#" className={Styles.usuario}>
+          <Link to='/usuario' className={Styles.usuario}>
             <img src={icon_user} alt='area do usuário' />
-          </a>
+          </Link>
         </div>
 
         {/*Área do filtro*/}

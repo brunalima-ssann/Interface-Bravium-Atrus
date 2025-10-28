@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Login from './componentes/login'
 import Entregas from './componentes/entregas'
 import Detalhes from './componentes/detalhes'
-import Confirmacao from './componentes/confirmacao';
-import Pos_Confirmacao from './componentes/posConfirmacao';
+import Confirmacao from './componentes/confirmacao'
+import Pos_Confirmacao from './componentes/posConfirmacao'
+import Usuario from './componentes/usuario'
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
 
           {/* Tela pós-confirmação exibida após a entrega ser confirmada */}
           <Route path="/posConfirmacao" element={<Pos_Confirmacao/>}/>
+
+          {/* Tela usuário */}
+          <Route path='/usuario' element={<Usuario/>}/>
         </Routes>
       </Router>
     </main>
