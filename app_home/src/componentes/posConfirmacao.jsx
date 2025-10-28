@@ -14,7 +14,7 @@ function Pos_Confirmacao(){
    useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/entregas') 
-   },1000000)// tempo de permanência na tela (5 segundos)
+   },5000)// tempo de permanência na tela (5 segundos)
     return () => clearTimeout(timer)
   }, [navigate])
 

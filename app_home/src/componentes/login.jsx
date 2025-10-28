@@ -16,13 +16,13 @@ function Login() {
 
         // Validação simples de login e senha
         if (login === 'blima' && senha === '12345') {
-            // Se o login estiver correto, salva o nome do usuário no localStorage
-            localStorage.setItem('nomeUsuario', 'Bruna Santos')
-            // Redireciona para a página de entregas
-            window.location.href = '/entregas'
+            localStorage.setItem('nomeUsuario', 'Bruna Santos');
+            window.location.href = '/entregas';
+        } else if (login === 'jvamaral' && senha === '54321') {
+            localStorage.setItem('nomeUsuario', 'João Amaral');
+            window.location.href = '/entregas';
         } else {
-            // Se estiver incorreto, mostra mensagem de erro
-            setErro('Usuário ou senha incorretos.')
+            setErro('Usuário ou senha incorretos.');
         }
     }
 
