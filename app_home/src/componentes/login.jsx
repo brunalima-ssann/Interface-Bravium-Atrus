@@ -45,7 +45,7 @@ function Login() {
                                 <input type="text" value={login} onChange={(e) => setLogin(e.target.value)} placeholder="Digite seu login"/>
 
                                 <label>Senha:</label>
-                                <input type="password" value={senha}placeholder="Digite sua senha"/>
+                                <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="Digite sua senha"/>
 
                                 {erro && <p className={Styles.erro}>{erro}</p>}
 
