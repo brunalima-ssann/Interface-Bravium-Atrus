@@ -126,6 +126,9 @@
     .area_usuario p{
         font-size: 25px;
     }
+    .area_usuario h1{
+        font-size: 25px;
+    }
     .usuario{
         margin-right: 1px;
         width: 30px;

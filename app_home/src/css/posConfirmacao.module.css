@@ -9,7 +9,7 @@
 
 .mensagem {
     width: 90%;
-    height: 200px;
+    height: 250px;
     display: flex;
     text-align: center;
     justify-content: space-between;
@@ -24,8 +24,7 @@
     align-self: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;  
 }
 .iconCheck{
     color: white;
@@ -38,4 +37,38 @@
 .texto h3{
     color: #3B3B3B;
     font-size: 25px;
+}
+
+@media (max-width: 768px){
+
+    .texto h1{
+        color: #052A75;
+        font-size: 18px;
+    }   
+
+    .texto h3{
+    color: #3B3B3B;
+    font-size: 15px;
+    }
+
+    .check{
+    background-color: #052A75;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    }
+    .mensagem {
+    width: 90%;
+    height: 170px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: auto;
+    }
+
 }

@@ -144,3 +144,14 @@
   cursor: pointer;
   font-family: "Poppins";
 }
+
+@media (max-width: 768px){
+  .texto1 {
+  font-size: 13px;
+  }
+  .area_usuario {
+  font-size: 10px;
+  margin-top: 8px;
+  }
+
+}

@@ -14,7 +14,7 @@ function Pos_Confirmacao(){
    useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/entregas') 
-   },5000)// tempo de permanência na tela (5 segundos)
+   },1000000)// tempo de permanência na tela (5 segundos)
     return () => clearTimeout(timer)
   }, [navigate])
 
@@ -29,7 +29,7 @@ function Pos_Confirmacao(){
                 </div>
                 <div className={Styles.texto}>
                     <h1>Entrega confirmada com sucesso!</h1>
-                    <h3>Você já será direcionado para a tela inicial</h3>
+                    <h3>Você já será direcionado para <br></br>a tela inicial</h3>
                 </div>
             </div>
         </section>
