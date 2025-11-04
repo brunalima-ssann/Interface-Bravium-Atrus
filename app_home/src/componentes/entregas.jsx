@@ -48,11 +48,12 @@ function Entregas() {
   const [pedidos, setPedidos] = useState([]) // Armazena a lista de pedidos
 
   // Carrega o nome do usuário do localStorage
-  useEffect(() => {
-    const nomeSalvo = localStorage.getItem('nomeUsuario')
-    if (nomeSalvo) setNome(nomeSalvo)
-  }, [])
-
+ useEffect(() => {
+  const motoristaSalvo = JSON.parse(localStorage.getItem('motorista'))
+  if (motoristaSalvo) {
+    setNome(motoristaSalvo.nomeFormatado)
+  }
+}, [])
   // Carrega pedidos do localStorage ou usa o array original caso não haja dados salvos
   useEffect(() => {
     const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidosOriginais

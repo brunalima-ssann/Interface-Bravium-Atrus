@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaSignInAlt, FaChevronDown } from 'react-icons/fa'
 import Styles from '../css/login.module.css'
 import logo from '../imagem/logo_login.png'
 import Faixa from './faixa'
 
 function Login() {
+    const [motoristas, setMotoristas] = useState([])
+    const [carros, setCarros] = useState([])
     const [placa, setPlaca] = useState('')
     const [modelo, setModelo] = useState('')
     const [erro, setErro] = useState('')
@@ -12,33 +14,68 @@ function Login() {
     const [motoristaSelecionado, setMotoristaSelecionado] = useState(null)
     const [dropdownAberto, setDropdownAberto] = useState(false)
 
-    const motoristas = [
-        { id: 1, nome: 'Bruna Santos Lima' },
-        { id: 2, nome: 'João Vitor Amaral' },
-        { id: 3, nome: 'Isabella Preto' },
-        { id: 4, nome: 'Victor Ramon'}
-    ]
+    useEffect(() => {
+        // Carrega motoristas
+        fetch('/motoristas.json')
+            .then((res) => res.json())
+            .then((data) => setMotoristas(data))
+            .catch((err) => console.error('Erro ao carregar motoristas:', err))
 
-    // Validação fixa do carro
+        // Carrega carros
+        fetch('/carros.json')
+            .then((res) => res.json())
+            .then((data) => setCarros(data))
+            .catch((err) => console.error('Erro ao carregar carros:', err))
+    }, [])
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (placa.toUpperCase() === 'ABC1234' && modelo.toUpperCase() === 'FIAT FIORINO') {
+
+        if (carros.length === 0) {
+            setErro('Os dados dos carros ainda estão sendo carregados. Tente novamente em alguns segundos.')
+            return
+        }
+
+        const carroEncontrado = carros.find(
+            (carro) =>
+                carro.Placa?.toUpperCase() === placa.toUpperCase() &&
+                carro.Modelo?.toUpperCase() === modelo.toUpperCase()
+        )
+
+        if (carroEncontrado) {
             setCarroValido(true)
             setErro('')
         } else {
             setErro('Carro não encontrado.')
+            setCarroValido(false)
         }
     }
 
     const handleConfirmarMotorista = () => {
-        if (!motoristaSelecionado) {
+        if (!motoristaSelecionado || !motoristaSelecionado.Nome) {
             setErro('Selecione um motorista antes de continuar.')
             return
         }
 
-        localStorage.setItem('nomeUsuario', motoristaSelecionado.nome)
-        localStorage.setItem('placaCarro', placa)
-        localStorage.setItem('modeloCarro', modelo)
+        const nomeCompleto = motoristaSelecionado.Nome?.trim().split(' ') || []
+        const primeiroNome = nomeCompleto[0] || ''
+        const nomeFormatado = primeiroNome
+
+        const carroEncontrado = carros.find(
+            (carro) =>
+                carro.Placa?.toUpperCase() === placa.toUpperCase() &&
+                carro.Modelo?.toUpperCase() === modelo.toUpperCase()
+        )
+
+        // 🔹 Salva no localStorage
+        localStorage.setItem('motorista', JSON.stringify({
+            ...motoristaSelecionado,
+            nomeFormatado,
+            nomeCompleto
+        }))
+
+        localStorage.setItem('carro', JSON.stringify(carroEncontrado))
+
         window.location.href = '/entregas'
     }
 
@@ -64,23 +101,25 @@ function Login() {
                                 <label>Modelo:</label>
                                 <input type="text" value={modelo} onChange={(e) => setModelo(e.target.value)} placeholder="Digite o modelo do carro" />
 
-                                {/* Campo Motorista aparece somente se o carro for validado */}
                                 {carroValido && (
                                     <>
                                         <label>Motorista:</label>
                                         <div className={Styles.dropdown} onClick={() => setDropdownAberto(!dropdownAberto)}>
-                                            {motoristaSelecionado? motoristaSelecionado.nome: 'Selecione o motorista'}
+                                            {motoristaSelecionado ? motoristaSelecionado.Nome : 'Selecione o motorista'}
                                             <FaChevronDown className={Styles.dropdownLabel} />
 
                                             {dropdownAberto && (
-                                                <ul className={Styles.dropdownList}> {motoristas.map((m) => (
-                                                        <li key={m.id}>
-                                                            <div
-                                                                className={`${Styles.dropdownItem} ${motoristaSelecionado?.id === m.id ? Styles.dropdownItemSelecionado : ''}`}
-                                                                onClick={() => {setMotoristaSelecionado(m) 
+                                                <ul className={Styles.dropdownList}>
+                                                    {motoristas.map((m) => (
+                                                        <li key={m.Id}>
+                                                            <div className={`${Styles.dropdownItem} ${motoristaSelecionado?.Id === m.Id ? Styles.dropdownItemSelecionado : ''}`}
+                                                                onClick={() => {
+                                                                    setMotoristaSelecionado(m)
                                                                     setDropdownAberto(false)
-                                                                }}>
-                                                                {m.nome}
+                                                                    setErro('')
+                                                                }}
+                                                            >
+                                                                {m.Nome}
                                                             </div>
                                                         </li>
                                                     ))}
@@ -92,16 +131,12 @@ function Login() {
 
                                 {erro && <p className={Styles.erro}>{erro}</p>}
 
-                                {/* Botão Confirmar só aparece depois do campo motorista */}
-                                {carroValido && (
+                                {carroValido ? (
                                     <button type="button" onClick={handleConfirmarMotorista} className={Styles.botao_entrar}>
                                         Confirmar
                                         <FaSignInAlt className={Styles.icon_entrar} />
                                     </button>
-                                )}
-
-                                {/* Botão Entrar só aparece antes da validação do carro */}
-                                {!carroValido && (
+                                ) : (
                                     <button type="submit" className={Styles.botao_entrar}>
                                         Entrar
                                         <FaSignInAlt className={Styles.icon_entrar} />

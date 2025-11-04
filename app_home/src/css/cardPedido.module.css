@@ -16,18 +16,15 @@
   flex-direction: column;
 }
 
-.cardResumo p {
-  font-size: 25px;
-  margin-top: 15px;
-  font-weight: 700;
-}
 .infos{
   margin-top: 15px;
   font-size: 20px;
   font-weight: 400;
   margin-top: 15px;
 }
-
+.infos strong{
+  font-size: 25px;
+}
 .cardDetalhes {
   margin-top: 12px;
   padding-top: 12px;
@@ -153,6 +150,9 @@
   font-size: 15px;
   font-weight: 400;
   margin-top: 15px;
+ }
+ .infos strong{
+  font-size: 20px;
  }
 }
 

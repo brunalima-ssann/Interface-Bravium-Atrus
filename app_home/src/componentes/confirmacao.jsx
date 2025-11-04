@@ -12,11 +12,13 @@ function Confirmacao() {
 
     const navigate = useNavigate() // Permite navegar para outra rota
 
-    // Recupera o nome do usuário do localStorage ao montar o componente
-    useEffect(() => {
-        const nomeSalvo = localStorage.getItem('nomeUsuario')
-        if (nomeSalvo) setNome(nomeSalvo)
-    }, [])
+     // Carrega o nome do usuário do localStorage
+ useEffect(() => {
+  const motoristaSalvo = JSON.parse(localStorage.getItem('motorista'))
+  if (motoristaSalvo) {
+    setNome(motoristaSalvo.nomeFormatado)
+  }
+}, [])
 
     /**
      * Adiciona novos arquivos à lista
@@ -40,6 +42,11 @@ function Confirmacao() {
      * Confirma a entrega e navega para a página de pós-confirmação
      */
     const confirmarEntrega = () => {
+        if (arquivos.length === 0) {
+        alert('É necessário anexar pelo menos uma foto para confirmar a entrega.')
+        return // interrompe a execução da função
+    }
+
         navigate("/posConfirmacao")
     }
 

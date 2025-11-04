@@ -1,0 +1,58 @@
+[
+  {
+    "Id": 1,
+    "Placa": "ABC123",
+    "Modelo": "Fiat Fiorino",
+    "Cor": "Branco",
+    "Ano": 2022
+  },
+  {
+    "Id": 2,
+    "Placa": "DEF456",
+    "Modelo": "Renault Kwid",
+    "Cor": "Preto",
+    "Ano": 2024
+  },
+  {
+    "Id": 3,
+    "Placa": "GHI789",
+    "Modelo": "Ford Ka",
+    "Cor": "Cinza",
+    "Ano": 2019
+  },
+  {
+    "Id": 4,
+    "Placa": "JKL012",
+    "Modelo": "Chevrolet Onix",
+    "Cor": "Vermelho",
+    "Ano": 2020
+  },
+  {
+    "Id": 5,
+    "Placa": "WYZ589",
+    "Modelo": "Fiat Uno",
+    "Cor": "Amarelo",
+    "Ano": 2020
+  },
+  {
+    "Id": 6,
+    "Placa": "ADG596",
+    "Modelo": "Volkswagen Nivus",
+    "Cor": "Vermelho",
+    "Ano": 2018
+  },
+  {
+    "Id": 7,
+    "Placa": "HJK321",
+    "Modelo": "Ford Fiesta",
+    "Cor": "Azul",
+    "Ano": 2015
+  },
+  {
+    "Id": 8,
+    "Placa": "HJK322",
+    "Modelo": "Ford Fiesta",
+    "Cor": "Vermelho",
+    "Ano": 2016
+  }
+]

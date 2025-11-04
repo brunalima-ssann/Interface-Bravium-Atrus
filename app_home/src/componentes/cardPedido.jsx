@@ -34,9 +34,9 @@ function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
       {/* Exibição resumida do pedido */}
       {!aberto ? (
         <div className={Styles.cardResumo}>
-          <p>Cliente</p>
+          
           <div className={Styles.infos}>
-            {pedido.cliente}<br />
+           <strong> {pedido.cliente}<br /></strong>
             {pedido.endereco}
           </div>
 
@@ -49,7 +49,6 @@ function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
 
         /* Exibição detalhada do pedido */
         <div className={Styles.cardDetalhes}>
-          <h1>Cliente</h1>
           <h2>Dados:</h2>
           <div className={Styles.infos2}>
             {pedido.cliente}<br />

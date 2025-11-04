@@ -47,12 +47,13 @@
     flex-wrap: wrap;
     font-family: 'Poppins', sans-serif;
     margin-top: 20px;
+    max-width: 100%;
 }
 
 .campo {
     display: flex;
     flex-direction: column;
-    min-width: 180px;
+    min-width: 185px;
 }
 
 .campo label {
