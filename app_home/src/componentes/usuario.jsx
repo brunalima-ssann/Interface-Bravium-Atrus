@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Faixa from './faixa'
 import Relogio from './relogio'
 import { Link } from 'react-router-dom'
-import icon_user from '../imagem/icon_user.png'
+import back_icon from '../imagem/back_icon.png'
 
 function Usuario() {
     const [nome, setNome] = useState('')
@@ -54,10 +54,10 @@ function Usuario() {
 
             <section className={Styles.usuario}>
                 <div className={Styles.area_usuario}>
-                    <h1>Meus dados</h1>
-                    <Link to='/usuario' className={Styles.imgusuario}>
-                        <img src={icon_user} alt='área do usuário' />
+                    <Link to='/entregas' className={Styles.imgusuario}>
+                        <img src={back_icon} alt='área do usuário' />
                     </Link>
+                    <h1>Meus dados</h1>
                 </div>
 
                 <div className={Styles.infos_carro}>

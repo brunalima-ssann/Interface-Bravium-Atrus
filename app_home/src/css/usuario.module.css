@@ -13,7 +13,7 @@
     height: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 15px;
     margin-top: 25px;
 }
 .area_usuario h1{
@@ -22,12 +22,15 @@
     font-size: 30px;
 }
 .imgusuario{
-    width: 50px;
-    /*margin-right: 50px;*/
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
 }
 .imgusuario img{
-    width: 100%;
-    
+    width: 100%; 
+}
+.imgusuario:hover{
+    transform: translateX(-10px);
 }
 .infos_carro{
     width: 90%;
