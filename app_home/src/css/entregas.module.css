@@ -166,3 +166,12 @@
         margin-top: 20px;
     }
 }
+
+@media (min-width: 412px){
+    .campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    
+}
+}
