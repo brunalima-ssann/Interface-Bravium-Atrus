@@ -256,3 +256,12 @@
     margin-right: 10px;
   }
 }
+
+@media (max-width: 412px){
+     .dropdown{
+    width: 90%;
+  }
+  .dropdownList{
+    width: 70%;
+  }
+}
