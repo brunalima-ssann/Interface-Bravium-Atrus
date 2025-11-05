@@ -7,8 +7,13 @@ O projeto é organizado de forma modular e clara, facilitando manutenção, esca
 # Estrutura geral
 /
 ├── comece_aqui/      # Você esta aqui agora
-├── node_modules/         
-├── src/              # Código-fonte da aplicação << Pasta mais importantes
+├── node_modules/ 
+├── public/           # Pasta com excel e JSONS utilizados para o login
+    ├── Cadastro Carros         # Excel cadastro de carros
+    ├── Cadastro Motoristas     # Excel cadastro de motoristas
+    ├── carros.json             # JSON com as informações dos carros
+    └── motoristas.json         # JSON com as informações dos motoristas
+├── src/              # Código-fonte da aplicação << Pasta mais importante
     ├── componentes/      # Todos os arquivos JSX da aplicação 
     ├── css/              # CSS Modules de cada componente
     ├── imagem/           # Imagens e ícones utilizados na interface
@@ -18,7 +23,13 @@ O projeto é organizado de forma modular e clara, facilitando manutenção, esca
     └── main.jsx
 ├── index.html        # Definição de titulo, icon...
 ├── package.json      # Configurações do projeto e dependências
-└── package-lock.json # Versão exata das dependências instaladas    
+└── package-lock.json # Versão exata das dependências instaladas  
+
+
+# public/
+- Pasta dedicada ao excel e JSON
+- Esses arquivos servem para o cadastro da frota de carros e de novos motoristas
+- As informações do JSON são ligadas diretamente com a entrada no sistema
 
 # componentes/
 - Contém todos os arquivos .jsx usados no projeto.
