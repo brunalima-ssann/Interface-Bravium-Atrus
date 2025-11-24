@@ -25,7 +25,7 @@ function App() {
           <Route path="/detalhes/:id" element={<Detalhes/>} />
 
           {/* Tela para confirmar a entrega e anexar documentos */}
-          <Route path="/confirmacao" element={<Confirmacao/>}/>
+          <Route path="/confirmacao/:id" element={<Confirmacao/>}/>
 
           {/* Tela pós-confirmação exibida após a entrega ser confirmada */}
           <Route path="/posConfirmacao" element={<Pos_Confirmacao/>}/>

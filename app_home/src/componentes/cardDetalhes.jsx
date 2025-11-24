@@ -7,7 +7,7 @@ function CardDetalhe({ pedido }) {//Puxando informações do componente 'detalhe
 
       {/* Nome do cliente */}
       <h3>Cliente:</h3>
-      <p className={Styles.nome}>{pedido.cliente}</p>
+      <p className={Styles.nome}>{pedido.nomes}</p>
 
       {/* Telefone do cliente */}
       <div className={Styles.linha}>
@@ -19,19 +19,19 @@ function CardDetalhe({ pedido }) {//Puxando informações do componente 'detalhe
       <h3>Endereço:</h3>
       <div className={Styles.linha}>
         <FaMapMarkerAlt className={Styles.icone} />
-        <p>{pedido.endereco}</p>
+        <p>{pedido.itoaddress} {pedido.itoaddressnumber}</p>
       </div>
       {/* Endereço completo (bairro e CEP) */}
-      <p className={Styles.indent}>{pedido.enderecoCompleto}</p>
+      <p className={Styles.indent}>{pedido.itoquarter} | {pedido.cep}</p>
 
       {/* Informações do pedido */}
       <h3>Pedido:</h3>
       <div className={Styles.linha}>
         <FaRegFileAlt className={Styles.icone} />
-        <p>Id Pedido: {pedido.idPedido}</p>
+        <p>Id Pedido: {pedido.pedidoformatado}</p>
       </div>
       {/* Data de entrega */}
-      <p className={Styles.indent}>Entrega até {pedido.dataEntrega}</p>
+      <p className={Styles.indent}>N° Nota fiscal: {pedido.nf}</p>
 
     </div>
   );

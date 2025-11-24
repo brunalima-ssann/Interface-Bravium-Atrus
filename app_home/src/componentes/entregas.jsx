@@ -6,42 +6,6 @@ import Faixa from './faixa'
 import Relogio from './relogio'
 import { Link } from 'react-router-dom'
 
-// especie de "banco de dados" local, substituir por requisição
-// é um array de objetos que contém os pedidos iniciais da aplicação.
-// cada objeto representa um pedido individual e possui propriedades individuais - nome, endereço, id...
-const pedidosOriginais = [
-  {
-    id: 1,
-    cliente: 'Lucas Fabiano',
-    telefone: '(11) 95688-9988',
-    endereco: 'Franciso Hurtado, 45',
-    enderecoCompleto: 'Vila Água Funda | 04156-050',
-    idPedido: '65432155BR',
-    dataEntrega: '25/10',
-    status: ''
-  },
-  {
-    id: 2,
-    cliente: 'Maria Clara Santos',
-    telefone: '(11) 96687-9332',
-    endereco: 'Rua Chelb Massud, 51',
-    enderecoCompleto: 'Vila Prudência | 04110-060',
-    idPedido: '5899623BR',
-    dataEntrega: '26/10',
-    status: 'Entregue'
-  },
-  {
-    id: 3,
-    cliente: 'Marcelo Rodrigues',
-    telefone: '(11) 93359-8563',
-    endereco: 'Rua Guarará, 179',
-    enderecoCompleto: 'Bela Vista | 05586-010',
-    idPedido: '59876BR',
-    dataEntrega: '27/10',
-    status: 'Cliente não encontrado'
-  }
-];
-
 function Entregas() {
 
   const [nome, setNome] = useState('') // Armazena o nome do usuário logado
@@ -56,9 +20,22 @@ function Entregas() {
 }, [])
   // Carrega pedidos do localStorage ou usa o array original caso não haja dados salvos
   useEffect(() => {
-    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || pedidosOriginais
-    setPedidos(pedidosSalvos)
-  }, [])
+  fetch('/pedidos.json')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Pedidos carregados do JSON:", data);
+      setPedidos(data);
+
+      // Opcional: salva no localStorage
+      localStorage.setItem('pedidos', JSON.stringify(data));
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar pedidos:", err);
+
+      // Caso dê erro, usa os pedidos originais como fallback
+      setPedidos(pedidosOriginais);
+    });
+  }, []);
 
   /**
    * Atualiza o status de um pedido específico

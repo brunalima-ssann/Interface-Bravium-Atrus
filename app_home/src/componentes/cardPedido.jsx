@@ -1,27 +1,25 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Styles from '../css/cardPedido.module.css'
-import { FaPhone, FaMapMarkerAlt} from 'react-icons/fa'
+import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
 function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
   if (!pedido) return null; // Se não houver pedido, não renderiza nada
 
-  const [aberto, setAberto] = useState(false); // Estado que controla se o card está aberto ou no resumo
-  const navigate = useNavigate(); // Para navegar para detalhes do pedido
+  const [aberto, setAberto] = useState(false);
+  const navigate = useNavigate();
 
   /**
    * Função chamada ao clicar em "Marcar como entregue"
-   * Chama a função passada pelo componente pai e navega para a página de detalhes
+   * Navega para a página de confirmação do pedido
    */
   const handleMarcarEntregue = () => {
-    onMarcarEntregue(pedido.id);
-    navigate(`/detalhes/${pedido.id}`);
+    onMarcarEntregue(pedido.id); // mantém sua função original
+    navigate(`/detalhes/${pedido.id}`); // AGORA vai para a rota correta
   };
 
   /**
-   * Função chamada quando o pedido é marcado como "Cliente não encontrado"
-   * Atualiza apenas o status do pedido específico
-   * Fecha o card após atualizar >> Ainda não esta funcional 
+   * Cliente não encontrado
    */
   const handleClienteNaoEncontrado = () => {
     atualizarStatus(pedido.id, 'Cliente não encontrado');
@@ -31,41 +29,40 @@ function CardPedido({ pedido, onMarcarEntregue, atualizarStatus }) {
   return (
     <div className={Styles.card}>
 
-      {/* Exibição resumida do pedido */}
+      {/* Exibição resumida */}
       {!aberto ? (
         <div className={Styles.cardResumo}>
-          
           <div className={Styles.infos}>
-           <strong> {pedido.cliente}<br /></strong>
-            {pedido.endereco}
+            <strong>{pedido.nomes}<br /></strong>
+            {pedido.itoaddress} {pedido.itoaddressnumber}
           </div>
 
           <button onClick={() => setAberto(true)} className={Styles.botaoDetalhes}>
             Ver detalhes
           </button>
         </div>
-
-      ) : (
-
-        /* Exibição detalhada do pedido */
+) : (
+        /* Exibição detalhada */
         <div className={Styles.cardDetalhes}>
           <h2>Dados:</h2>
+
           <div className={Styles.infos2}>
-            {pedido.cliente}<br />
+            {pedido.nomes}<br />
 
             <FaPhone className={Styles.icone} />
             {pedido.telefone}<br /><br />
 
             <FaMapMarkerAlt className={Styles.icone} />
-            {pedido.endereco}<br />
-            <div className={Styles.conteudo1}>{pedido.enderecoCompleto}</div>
+            {pedido.itoaddress} {pedido.itoaddressnumber}<br />
+            <div className={Styles.conteudo1}>
+              {pedido.itoquarter}  |  {pedido.cep}
+            </div>
           </div>
 
           <div className={Styles.botoesDetalhes2}>
             <button onClick={handleMarcarEntregue} className={Styles.botaoEntregue}>
               Marcar como entregue
             </button>
-
             <button onClick={() => setAberto(false)} className={Styles.botaoFechar}>
               Fechar
             </button>

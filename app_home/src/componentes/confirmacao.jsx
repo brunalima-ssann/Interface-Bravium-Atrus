@@ -1,59 +1,56 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { FaFileAlt, FaPaperclip, FaTrashAlt, FaCamera } from 'react-icons/fa'
-import Styles from '../css/confirmacao.module.css'
-import Relogio from './relogio'
-import Faixa from './faixa'
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom'; // ✅ adicionei useParams
+import { FaFileAlt, FaPaperclip, FaTrashAlt, FaCamera } from 'react-icons/fa';
+import Styles from '../css/confirmacao.module.css';
+import Relogio from './relogio';
+import Faixa from './faixa';
 
 function Confirmacao() {
-    const [nome, setNome] = useState('') // Armazena o nome do usuário logado
-    const [arquivos, setArquivos] = useState([]) // Armazena arquivos anexados
-    const [abrirCamera, setAbrirCamera] = useState(false) // Estado para abrir modal de câmera (em teste)
+    const { id } = useParams(); // ✅ captura o ID do pedido
+    const navigate = useNavigate();
 
-    const navigate = useNavigate() // Permite navegar para outra rota
+    const [nome, setNome] = useState('');
+    const [arquivos, setArquivos] = useState([]);
 
-     // Carrega o nome do usuário do localStorage
- useEffect(() => {
-  const motoristaSalvo = JSON.parse(localStorage.getItem('motorista'))
-  if (motoristaSalvo) {
-    setNome(motoristaSalvo.nomeFormatado)
-  }
-}, [])
+    // 🔥 busca pedido pelo ID
+    const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const pedido = pedidosSalvos.find(p => Number(p.id) === Number(id));
 
-    /**
-     * Adiciona novos arquivos à lista
-     * Recebe arquivos do input e concatena aos já existentes
-     */
+    useEffect(() => {
+        const motoristaSalvo = JSON.parse(localStorage.getItem('motorista'));
+        if (motoristaSalvo) setNome(motoristaSalvo.nomeFormatado);
+    }, []);
+
+    if (!pedido) return <p>Nenhum pedido encontrado</p>;
+
     const handleArquivoChange = (event) => {
-        const novosArquivos = Array.from(event.target.files)
-        setArquivos((prev) => [...prev, ...novosArquivos])
-    }
+        const novosArquivos = Array.from(event.target.files);
+        setArquivos(prev => [...prev, ...novosArquivos]);
+    };
 
-    /**
-     * Remove um arquivo específico da lista
-     * index: posição do arquivo a ser removido
-     */
     const handleRemoverArquivo = (index) => {
-        const novaLista = arquivos.filter((_, i) => i !== index)
-        setArquivos(novaLista)
-    }
+        setArquivos(prev => prev.filter((_, i) => i !== index));
+    };
 
-    /**
-     * Confirma a entrega e navega para a página de pós-confirmação
-     */
     const confirmarEntrega = () => {
         if (arquivos.length === 0) {
-        alert('É necessário anexar pelo menos uma foto para confirmar a entrega.')
-        return // interrompe a execução da função
-    }
+            alert('É necessário anexar pelo menos uma foto para confirmar a entrega.');
+            return;
+        }
 
-        navigate("/posConfirmacao")
-    }
+        // Atualiza o status do pedido
+        const pedidosAtualizados = pedidosSalvos.map(p => 
+            p.id === pedido.id ? { ...p, status: 'Entregue' } : p
+        );
+        localStorage.setItem('pedidos', JSON.stringify(pedidosAtualizados));
+
+        navigate("/posConfirmacao");
+    };
 
     return (
         <>
-            <Faixa /> {/* Decoração */}
-            <Relogio /> {/* Decoração */}
+            <Faixa />
+            <Relogio />
 
             <section className={Styles.confirmacao}>
                 <div className={Styles.texto1}>
@@ -70,29 +67,14 @@ function Confirmacao() {
                     <div className={Styles.uploadCard}>
                         <h2>TERMO DE ENTREGA</h2>
 
-                        {/* Input para selecionar múltiplos arquivos */}
                         <label className={Styles.uploadLabel}>
                             <FaPaperclip className={Styles.iconClip} />
                             Selecionar arquivos
                             <input type="file" multiple onChange={handleArquivoChange} className={Styles.inputFile} />
                         </label>
-
-                        {/* Botão para abrir a câmera (em teste) */}
-                        {/* <button onClick={() => setAbrirCamera(true)} className={Styles.botaoCamera}>
-                            <FaCamera className={Styles.iconCamera}/> Tirar foto
-                        </button> */}
                     </div>
-
-                    {/* Modal de câmera (em teste) */}
-                    {/* {abrirCamera && (
-                        <CameraModal 
-                            onClose={() => setAbrirCamera(false)} 
-                            onCapture={(foto) => setArquivos(prev => [...prev, foto])}
-                        />
-                    )} */}
                 </div>
 
-                {/* Lista de arquivos anexados */}
                 {arquivos.length > 0 && (
                     <div className={Styles.listaArquivos}>
                         {arquivos.map((arquivo, index) => (
@@ -107,13 +89,12 @@ function Confirmacao() {
                     </div>
                 )}
 
-                {/* Botão para confirmar entrega */}
                 <button onClick={confirmarEntrega} className={Styles.botaoConfirmar}>
                     Confirmar entrega
                 </button>
             </section>
         </>
-    )
+    );
 }
 
-export default Confirmacao
+export default Confirmacao;
