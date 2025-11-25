@@ -6,29 +6,32 @@ O projeto é organizado de forma modular e clara, facilitando manutenção, esca
 
 # Estrutura geral
 /
-├── comece_aqui/      # Você esta aqui agora
+├── comece_aqui/                # Você esta aqui agora
 ├── node_modules/ 
-├── public/           # Pasta com excel e JSONS utilizados para o login
-    ├── Cadastro Carros         # Excel cadastro de carros
+├── public/                     # Pasta com excel e JSONS utilizados para o login e base de pedidos
+    ├── Base pedidos            # Excel base de pedidos
+    ├── base_pedidos.py         # API para leitura do excel de pedidos
+    ├── Cadastro Carros         # Excel cadastro de motoristas
     ├── Cadastro Motoristas     # Excel cadastro de motoristas
     ├── carros.json             # JSON com as informações dos carros
-    └── motoristas.json         # JSON com as informações dos motoristas
-├── src/              # Código-fonte da aplicação << Pasta mais importante
-    ├── componentes/      # Todos os arquivos JSX da aplicação 
-    ├── css/              # CSS Modules de cada componente
-    ├── imagem/           # Imagens e ícones utilizados na interface
-    ├── App.css           # Configurações básicas sobre estilo
-    ├── App.jsx           # Componente principal que define as rotas
-    ├── index.css         # Sem utilidade no momento
+    ├── motoristas.json         # JSON com as informações dos motoristas
+    └── pedidos.json            # JSON com as informações dos pedidos
+├── src/                        # Código-fonte da aplicação << Pasta mais importante
+    ├── componentes/            # Todos os arquivos JSX da aplicação 
+    ├── css/                    # CSS Modules de cada componente
+    ├── imagem/                 # Imagens e ícones utilizados na interface
+    ├── App.css                 # Configurações básicas sobre estilo
+    ├── App.jsx                 # Componente principal que define as rotas
+    ├── index.css               # Sem utilidade no momento
     └── main.jsx
-├── index.html        # Definição de titulo, icon...
-├── package.json      # Configurações do projeto e dependências
-└── package-lock.json # Versão exata das dependências instaladas  
+├── index.html                  # Definição de titulo, icon...
+├── package.json                # Configurações do projeto e dependências
+└── package-lock.json           # Versão exata das dependências instaladas  
 
 
 # public/
 - Pasta dedicada ao excel e JSON
-- Esses arquivos servem para o cadastro da frota de carros e de novos motoristas
+- Esses arquivos servem para o cadastro da frota de carros, de novos motoristas e para a base de pedidos
 - As informações do JSON são ligadas diretamente com a entrada no sistema
 
 # componentes/
